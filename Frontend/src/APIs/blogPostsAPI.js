@@ -22,13 +22,14 @@ export const listBlogpost = async () =>{
     }
 }
 
-export const insertblogpost = async (title, content) => {
+export const insertblogpost = async (title, content, tokenKey) => {
     try {
         let response = await fetch(API_NEW_BLOGPOST, {
             method: 'POST',
             body: `title=${title}&content=${content}}`,
             headers: {
                 "Content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+                "x-access-token": tokenKey
             },
         })
         let responseJson = await response.json()

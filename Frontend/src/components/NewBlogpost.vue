@@ -34,6 +34,11 @@
         props: {
             message: String
         },
+        beforeCreate() {
+            if (!this.$session || !this.$session.get('loggedInUser')) {
+                this.$router.push('/')
+            }
+        },
         //hàm data chứa các thuộc tính private
         data(){
             return {
@@ -57,16 +62,18 @@
                     return
                 }
 
-
-                this.insertblogpostResponse = await insertblogpost(this.title, this.content)
+                const token = this.$session.get('loggedInUser').tokenKey;
+                this.insertblogpostResponse = await insertblogpost(this.title, this.content, token)
                  console.log(this.title, this.content)
             },
             checkForm() {
                 this.errors = []
-                if (!this.newBlogPost.title){
+
+                if (!this.title){
+
                     this.errors.push("Thiếu tiêu đề Blog")
                 }
-                if (!this.newBlogPost.content){
+                if (!this.content){
                     this.errors.push("Thiếu nội dung Blog")
                 }
             }
