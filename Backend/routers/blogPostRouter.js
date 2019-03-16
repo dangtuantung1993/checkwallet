@@ -23,7 +23,7 @@ router.post('/insertBlogPost', async (req, res)=>{
         res.json({
             result: 'ok',
             message: 'Thêm mới BlogPost thành công',
-            data : newBlogPost
+            data : newBlogPost,
         })
     }catch (error) {
         res.json({
@@ -35,11 +35,11 @@ router.post('/insertBlogPost', async (req, res)=>{
 router.get('/', async(req, res) => {
     try {
         let blogPosts = await listAll()
-
         res.json({
             result :'ok',
             message: 'Query thành công danh sách BlogPost',
             data: blogPosts
+
         })
     }catch (error) {
         res.json({

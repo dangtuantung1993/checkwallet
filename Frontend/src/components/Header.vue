@@ -8,14 +8,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#myPage">Logo</a>
+                    <a class="navbar-brand" href="/">Dangtuantung</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#ether">Ether</a></li>
-                        <li><a href="#blogpost">Blog Post</a></li>
-                        <li class="nav-item align-middle" v-if="this.isLoggedIn==true">
-                        <a v-show="userName.length > 0" class="align-middle ml-2">{{userName}}</a>
+                        <li><a href="#ether">Check List Ví</a></li>
+                        <li><a href="#blogpost">Bài Viết</a></li>
+                        <li class="nav-item align-middle"
+                            v-if="this.isLoggedIn==true">
+                            <a @click="newblogpost">Thêm Bài Viết</a>
+                        </li>
+                        <li class="nav-item align-middle"
+                            v-if="this.isLoggedIn==true">
+                            <a v-show="userName.length > 0" class="align-middle ml-2">{{userName}}</a>
+
+                        </li>
+                        <li class="nav-item align-middle"
+                            v-if="this.isLoggedIn==true">
                             <a @click="clickToSignOut">
                                 Sign out
                             </a>
@@ -75,6 +84,9 @@
                 this.isLoggedIn = false
                 this.$emit('clickToSignOut')
             },
+            newblogpost(){
+                this.$router.push('/newblogpost')
+            }
         }
     }
 </script>

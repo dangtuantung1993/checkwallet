@@ -5,13 +5,13 @@
                     <div class="post-preview"
                          v-for="blogPost in blogPosts"
                          :key="blogPost.title">
-                        <a  v-on:click="seen = !seen">
+                        <a @click="view" >
                             <h2 class="post-title">
                                {{blogPost.title}}
                             </h2>
 
                             <h3 class="post-subtitle"
-                                v-if="seen">
+                                >
                                 {{blogPost.content}}
                             </h3>
 
@@ -20,10 +20,6 @@
                         <p class="post-meta">Posted by <a href="#">{{blogPost.author}}</a>
                         </p>
                     </div>
-                </div>
-                <div>
-                    <button type="button"
-                            @click="clickNewBlogpost" >New Blogpost</button>
                 </div>
             </div>
         </div>
@@ -43,13 +39,11 @@
             return{
                 blogPosts:[
                 ],
-                seen :false
             }
 
         },
         mounted(){
             this.getDataFromAPI()
-
         },
 
         methods: {
@@ -58,8 +52,8 @@
                 this.blogPosts = Blogposts
 
             },
-            clickNewBlogpost(){
-                this.$router.push('/newblogpost')
+            view(){
+
             }
         }
     }
