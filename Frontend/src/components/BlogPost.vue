@@ -3,9 +3,9 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <div class="post-preview"
-                         v-for="blogPost in blogPosts"
+                             v-for="(blogPost, index) in blogPosts"
                          :key="blogPost.title">
-                        <a @click="view" >
+                        <a @click="view(index  )" >
                             <h2 class="post-title">
                                {{blogPost.title}}
                             </h2>
@@ -50,10 +50,11 @@
             getDataFromAPI: async function () {
                 let Blogposts = await listBlogpost()
                 this.blogPosts = Blogposts
-
+                console.log(this.blogPosts);
             },
-            view(){
+            view(id){
 
+                this.$router.push('/blogpost/'+id)
             }
         }
     }
